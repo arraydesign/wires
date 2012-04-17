@@ -1,0 +1,47 @@
+/*
+Theme Name: Wires
+Theme URI: http://arraydesign.ca/
+Description: Wires default theme.
+Version: 2.1
+Author: Array Design Studio
+Tags: arraydesign
+*/
+
+@import "css/jquery.fancybox.css";
+@import "css/typography.css";
+@import "css/global.css";
+@import "css/layout.css";
+
+ul#grid {
+    background: url("css/assets/BG-grid.gif") repeat scroll left top green;
+    display: none;
+    font-size: 8px;
+    height: 100%;
+    left: 0;
+    line-height: 8px;
+    list-style-type: none;
+    margin: 0 auto;
+    max-width: 1200px;
+    min-width: 1025px;
+    opacity: 0.3;
+    padding: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+ul#grid li{
+    background: url("css/assets/BG-grid.gif") repeat scroll left top red;
+    display: inline;
+    float: left;
+    height: 100%;
+    padding: 0;
+    margin-left: 1.722%;
+    margin-right: 1.722%;
+}
+
+ul#grid li:first-child {
+    margin-left: 3.444%;
+}
