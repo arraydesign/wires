@@ -8,40 +8,43 @@ Tags: arraydesign
 */
 
 @import "css/jquery.fancybox.css";
-@import "css/typography.css";
+@import "css/normalize.css";
 @import "css/global.css";
 @import "css/layout.css";
 
-ul#grid {
-    background: url("css/assets/BG-grid.gif") repeat scroll left top green;
-    display: none;
-    font-size: 8px;
-    height: 100%;
-    left: 0;
-    line-height: 8px;
-    list-style-type: none;
-    margin: 0 auto;
-    max-width: 1200px;
-    min-width: 1025px;
-    opacity: 0.3;
-    padding: 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
+ul#grid{background:url("css/assets/BG-grid.gif") repeat scroll left top green;display:none;height:100%;list-style-type:none;margin:0 auto;opacity:.3;padding:0;position:fixed;top:0;left:0px;width:100%;z-index:1000;font-size:8px;line-height:8px;min-width:1026px;max-width:1200px;right:0;}
+ul#grid li{background:url("css/assets/BG-grid.gif") repeat scroll left top red;height:100%;display:inline;float:left;padding:0;margin-left:1.25%;margin-right:1.25%;width:5.625%}
+ul#grid li:first-child{margin-left:2.5%}
+
+
+/* MOBILE
+-------------------------------------------------------------- */
+
+@media screen and (max-width: 592px) {
+ul#grid{background-color:blue;min-width:320px;max-width:480px}
+ul#grid li{margin-left:3.5%;margin-right:3.5%;width:24%}
+ul#grid li:first-child{margin-left:7%}
+ul#grid li:nth-child(n+4){display:none}
 }
 
-ul#grid li{
-    background: url("css/assets/BG-grid.gif") repeat scroll left top red;
-    display: inline;
-    float: left;
-    height: 100%;
-    padding: 0;
-    margin-left: 1.722%;
-    margin-right: 1.722%;
+
+/* SMALL
+-------------------------------------------------------------- */
+
+@media screen and (min-width: 593px) and (max-width: 849px) {
+ul#grid{background-color:yellow;min-width:593px;max-width:768px}
+ul#grid li{margin-left:2%;margin-right:2%;width:12%}
+ul#grid li:first-child{margin-left:4%}
+ul#grid li:nth-child(n+7){display:none}
 }
 
-ul#grid li:first-child {
-    margin-left: 3.444%;
+
+/* MEDIUM
+-------------------------------------------------------------- */
+
+@media screen and (min-width: 850px) and (max-width: 1025px) {
+ul#grid{background-color:gray;min-width:850px;max-width:1025px;}
+ul#grid li{margin-left:1.4%;margin-right:1.4%;width:8%}
+ul#grid li:first-child{margin-left:2.8%}
+ul#grid li:nth-child(n+10){display:none}
 }
