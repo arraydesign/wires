@@ -30,10 +30,10 @@
 //remove_filter( 'the_excerpt', 'wpautop' ); }
 	?>
 <?php if (is_ie()) { ?>
-	<!--[if lte IE 8]><link rel="stylesheet" type="text/css" media="screen" href="<?= $burl ?>css/ie8.css" /><![endif]-->
-	<!--[if IE 7]><link rel="stylesheet" type="text/css" media="screen" href=<?= $burl ?>"css/ie7.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/ie8.css" /><![endif]-->
+	<!--[if IE 7]><link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/ie7.css" /><![endif]-->
 <?php } else { ?>
-	<!--[if IE 9]><link rel="stylesheet" type="text/css" media="screen" href="<?= $burl ?>css/lte-ie9.css" /><![endif]-->
+	<!--[if IE 9]><link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/lte-ie9.css" /><![endif]-->
 <?php } ?>
 	<!-- wires.js is in the footer -->
 </head>
