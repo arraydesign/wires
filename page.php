@@ -15,7 +15,7 @@ get_header(); ?>
 					while (have_posts()) :
 						the_post();
 						the_content();
-						wp_link_pages_aus();
+						wp_link_pages_wires();
 					endwhile;
 				else: ?>
 
@@ -40,7 +40,7 @@ get_header(); ?>
 					<?php endif; ?>
 	
 					<div class="main">
-						<?php the_content(); wp_link_pages_aus(); ?>				
+						<?php the_content(); wp_link_pages_wires(); ?>				
 					</div><!-- END .main -->
 
 				<?php endwhile;

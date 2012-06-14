@@ -117,9 +117,9 @@ if ( ! function_exists( 'wires_setup' ) ):
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'primary' => __( 'Primary Navigation', 'aus' )
-			//'secondary' => __( 'Secondary Navigation', 'aus' ),
-			//'tertiary' => __( 'Tertiary Navigation', 'aus' )
+			'primary' => __( 'Primary Navigation', 'wires' )
+			//'secondary' => __( 'Secondary Navigation', 'wires' ),
+			//'tertiary' => __( 'Tertiary Navigation', 'wires' )
 		));
 		
 	}
@@ -151,7 +151,7 @@ add_filter( 'excerpt_length', 'wires_excerpt_length' );
  * @return string "Continue Reading" link
  */
 function wires_continue_reading_link() {
-	return ' <a href="'. get_permalink() . '" class="more-link">' . __( 'More', 'aus' ) . '</a>';
+	return ' <a href="'. get_permalink() . '" class="more-link">' . __( 'More', 'wires' ) . '</a>';
 }
 
 /**
@@ -181,7 +181,7 @@ add_filter( 'get_the_excerpt', 'wires_custom_excerpt_more' );
  * The Pages shortcode, used anytime the <!--nextpage--> is used in a post/page
  * @since wires 2.1
  */
-function wp_link_pages_aus($args = '') {
+function wp_link_pages_wires($args = '') {
 	$defaults = array(
 		'before' => '<div id="wp_page_numbers"><ul>', 'after' => '</ul><div style="float: none; clear: both;"></div></div>',
 		'link_before' => '<li>', 'link_after' => '</li>',
@@ -443,9 +443,9 @@ function wires_list_bookmarks($args = '') {
 function wires_widgets_init() {
 	
 	register_sidebar( array(
-		'name' => __( 'Primary Sidebar', 'aus' ),
+		'name' => __( 'Primary Sidebar', 'wires' ),
 		'id' => 'primary-sidebar',
-		'description' => __( 'The Primary Sidebar widget area', 'aus' ),
+		'description' => __( 'The Primary Sidebar widget area', 'wires' ),
 		'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h2>',
@@ -453,9 +453,9 @@ function wires_widgets_init() {
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Secondary Sidebar', 'aus' ),
+		'name' => __( 'Secondary Sidebar', 'wires' ),
 		'id' => 'secondary-sidebar',
-		'description' => __( 'The Secondary Sidebar widget area', 'aus' ),
+		'description' => __( 'The Secondary Sidebar widget area', 'wires' ),
 		'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h2>',
@@ -463,9 +463,9 @@ function wires_widgets_init() {
 	) );
 
 	register_sidebar( array(
-		'name' => __( 'Tertiary Sidebar', 'aus' ),
+		'name' => __( 'Tertiary Sidebar', 'wires' ),
 		'id' => 'tertiary-sidebar',
-		'description' => __( 'The Tertiary Sidebar widget area', 'aus' ),
+		'description' => __( 'The Tertiary Sidebar widget area', 'wires' ),
 		'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h2>',
@@ -492,7 +492,7 @@ if ( ! function_exists( 'wires_posted_on' ) ) :
  * @since wires 2.1
  */
 	function wires_posted_on() {
-		printf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s', 'aus' ),
+		printf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s', 'wires' ),
 			'meta-prep meta-prep-author',
 			sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><span class="entry-date">%3$s</span></a>',
 				get_permalink(),
@@ -501,7 +501,7 @@ if ( ! function_exists( 'wires_posted_on' ) ) :
 			),
 			sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s">%3$s</a></span>',
 				get_author_posts_url( get_the_author_meta( 'ID' ) ),
-				sprintf( esc_attr__( 'View all posts by %s', 'aus' ), get_the_author() ),
+				sprintf( esc_attr__( 'View all posts by %s', 'wires' ), get_the_author() ),
 				get_the_author()
 			)
 		);
@@ -517,11 +517,11 @@ if ( ! function_exists( 'wires_posted_in' ) ) :
 	// Retrieves tag list of current post, separated by commas.
 		$tag_list = get_the_tag_list( '', ', ' );
 		if ( $tag_list ) {
-			$posted_in = __( 'This entry was posted in %1$s and tagged %2$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'aus' );
+			$posted_in = __( 'This entry was posted in %1$s and tagged %2$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'wires' );
 		} elseif ( is_object_in_taxonomy( get_post_type(), 'category' ) ) {
-			$posted_in = __( 'This entry was posted in %1$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'aus' );
+			$posted_in = __( 'This entry was posted in %1$s. Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'wires' );
 		} else {
-			$posted_in = __( 'Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'aus' );
+			$posted_in = __( 'Bookmark the <a href="%3$s" title="Permalink to %4$s" rel="bookmark">permalink</a>.', 'wires' );
 		}
 		// Prints the string, replacing the placeholders.
 		printf(
