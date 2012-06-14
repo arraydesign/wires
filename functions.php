@@ -34,26 +34,29 @@ function custom_wires_css() {
 add_action('admin_head', 'custom_wires_css');
 
 /**
- * Loads latest version of jQuery
+ * Removes unnecessary scripts from the <head> and loads latest version of jQuery
  * @since wires 2.1
  */
-if( !is_admin() ){
-	remove_action( 'wp_head', 'feed_links_extra', 3 );
-	remove_action( 'wp_head', 'feed_links', 2 );
-	remove_action( 'wp_head', 'rsd_link' );
-	remove_action( 'wp_head', 'wlwmanifest_link' );
-	remove_action( 'wp_head', 'index_rel_link' );
-	remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 );
-	remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );
-	remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 );
-	remove_action( 'wp_head', 'wp_generator' );
-	remove_action( 'wp_head', 'rel_canonical' );	
-	remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
-	wp_deregister_script('jquery');
-	wp_deregister_script('l10n');
-	wp_register_script('jquery', ("https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"), false, '1.7.1');
-	wp_enqueue_script('jquery');
-}
+function wires_scripts() {
+    if( !is_admin() ){
+		remove_action( 'wp_head', 'feed_links_extra', 3 );
+		remove_action( 'wp_head', 'feed_links', 2 );
+		remove_action( 'wp_head', 'rsd_link' );
+		remove_action( 'wp_head', 'wlwmanifest_link' );
+		remove_action( 'wp_head', 'index_rel_link' );
+		remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 );
+		remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );
+		remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 );
+		remove_action( 'wp_head', 'wp_generator' );
+		remove_action( 'wp_head', 'rel_canonical' );	
+		remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
+		wp_deregister_script('jquery');
+		wp_deregister_script('l10n');
+		wp_register_script('jquery', ("https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"), false, '1.7.1');
+		wp_enqueue_script('jquery');
+	}
+}    
+add_action('wp_enqueue_scripts', 'wires_scripts');
 
 /**
  * Removes unwanted styles from the format dropdown in TinyMCE 
