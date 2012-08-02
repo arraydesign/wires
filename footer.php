@@ -22,7 +22,6 @@
 	</script> -->
 	<script type="text/javascript" src="https://raw.github.com/OscarGodson/jKey/master/jquery.jkey.js"></script>
 	<script type="text/javascript" src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.fancybox.js"></script>
-	<!-- <script type="text/javascript" src="js/paper.js"></script>  -->
 	<script type="text/javascript" src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/wires.js"></script>
 <?php if (is_ie()) { ?>
 	<!--[if lte IE 8]><script type="text/javascript" src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/lte-ie8.js"></script><![endif]-->

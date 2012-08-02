@@ -16,11 +16,11 @@ get_header(); ?>
 					the_post(); ?>
 				
 					<div <?php post_class(); ?> id="post-<?php the_ID(); ?>">
-						<h1 class="post-title"><a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a></h1>
-						<div class="post-meta">
-							by <?php the_author(); ?> <br />in <?php the_category(' '); ?> <br />on <?php the_date(); ?>
+						<h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a></h1>
+						<div class="entry-meta">
+							by <?php the_author(); ?> <br />in <?php the_category(' '); ?> <br />on <?php the_time(get_option('date_format')); ?>
 						</div>
-						<div class="post-desc">
+						<div class="entry-content">
 							<?php if ( has_post_thumbnail() ) { ?><a href="<?php the_permalink(); ?>" class="thumbnail post-thumb"><span><?php the_post_thumbnail(); ?></span></a><?php } ?>
 							<?php the_excerpt(); ?>
 						</div>
@@ -44,11 +44,11 @@ get_header(); ?>
 				$blog_loop->the_post(); $do_not_duplicate = $post->ID; ?>
 
 				<div <?php post_class('latest'); ?> id="post-<?php the_ID(); ?>">
-					<h1 class="post-title"><a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a></h1>
-					<div class="post-meta">
-						by <?php the_author(); ?> <br />in <?php the_category(' '); ?> <br />on <?php the_date(); ?>
+					<h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a></h1>
+					<div class="entry-meta">
+						by <?php the_author(); ?> <br />in <?php the_category(' '); ?> <br />on <?php the_time(get_option('date_format')); ?>
 					</div>
-					<div class="post-desc">
+					<div class="entry-content">
 						<?php if ( has_post_thumbnail() ) { ?><a href="<?php the_permalink(); ?>" class="post-thumb"><span><?php the_post_thumbnail('full-width'); ?></span></a><?php } ?>
 						<?php the_excerpt(); ?>
 					</div>
@@ -62,11 +62,11 @@ get_header(); ?>
 					the_post(); if( $post->ID == $do_not_duplicate ) continue; update_post_caches($posts); ?>
 						
 					<div <?php post_class(); ?> id="post-<?php the_ID(); ?>">
-						<h1 class="post-title"><a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a></h1>
-						<div class="post-meta">
-							by <?php the_author(); ?> <br />in <?php the_category(' '); ?> <br />on <?php the_date(); ?>
+						<h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a></h1>
+						<div class="entry-meta">
+							by <?php the_author(); ?> <br />in <?php the_category(' '); ?> <br />on <?php the_time(get_option('date_format')); ?>
 						</div>
-						<div class="post-desc">
+						<div class="entry-content">
 							<?php if ( has_post_thumbnail() ) { ?><a href="<?php the_permalink(); ?>" class="thumbnail post-thumb"><span><?php the_post_thumbnail(); ?></span></a><?php } ?>
 							<?php the_excerpt(); ?>
 						</div>

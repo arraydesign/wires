@@ -18,6 +18,41 @@ function is_ie() {
 }
 
 /**
+ * Detect special conditions devices
+ * @since wires 2.2
+ */
+function whatUserAgent($user_agent=NULL) {
+	if(!isset($user_agent)) {
+		$user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+	}
+   
+   $iPod = stripos($user_agent,"iPod");
+	$iPhone = stripos($user_agent,"iPhone");
+	$iPad = stripos($user_agent,"iPad");
+	//$Android= stripos($user_agent,"Android");
+	//$webOS= stripos($user_agent,"webOS");
+   
+   if ( $iPod || $iPhone ) {
+		return 'iPhone';
+	} else if($iPad) {
+	   return 'iPad';
+	} else {
+		return 'desktop';
+	}
+}
+
+/**
+ * Defines the section variable.
+ * @since wires 2.2
+ */
+$sec_start = '<section class="';
+$sec_end = '</section>';
+if (is_ie()) {
+	$sec_start = '<div class="genbox ';
+	$sec_end = '</div>';
+}
+
+/**
  * Disables the "Please update now" notice on the admin screen
  * @since wires 2.1
  */
@@ -52,7 +87,7 @@ function wires_scripts() {
 		remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
 		wp_deregister_script('jquery');
 		wp_deregister_script('l10n');
-		wp_register_script('jquery', ("https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"), false, '1.7.1');
+		wp_register_script('jquery', ("https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"), false, '1.7.2');
 		wp_enqueue_script('jquery');
 	}
 }    
@@ -76,17 +111,72 @@ function customformatTinyMCE($init) {
 add_filter('tiny_mce_before_init', 'customformatTinyMCE' );
  
 /**
- * Creates an is_subpage Conditional Tag
+ * Sets up the page title. 
+ * @since wires 2.1
+ */
+function wires_title( $old_title, $sep, $sep_location ){
+ 	// force capitalization of the first letter
+	$old_title = strtolower($old_title);
+	$old_title = ucwords($old_title);
+	
+	// add padding to the sep
+	$ssep = ' ' . $sep . ' ';
+	 
+	// find the type of index page this is
+	if( is_category() ) $insert = $ssep . 'Category';
+	elseif( is_tag() ) $insert = $ssep . 'Tag';
+	elseif( is_author() ) $insert = $ssep . 'Author';
+	elseif( is_year() || is_month() || is_day() ) $insert = $ssep . 'Archives';
+	else $insert = NULL;
+	 
+	// get the page number we're on (index)
+	if( get_query_var( 'paged' ) )
+	$num = $ssep . 'page ' . get_query_var( 'paged' );
+	 
+	// get the page number we're on (multipage post)
+	elseif( get_query_var( 'page' ) )
+	$num = $ssep . 'page ' . get_query_var( 'page' );
+	 
+	// else
+	else $num = NULL;
+	 
+	// concoct and return new title
+	return get_bloginfo( 'name' ) . $insert . $old_title . $num;
+}
+add_filter('wp_title', 'wires_title', 10, 3 );
+ 
+/**
+ * Tests to see if the current page is a sub-page. 
  * @since wires 2.1
  */
 function is_subpage() {
-	global $post;                                 		// load details about this page
-        if ( is_page() && $post->post_parent ) {      // test to see if the page has a parent
-               return $post->post_parent;             // return the ID of the parent post
-        } else {                                      // there is no parent so...
-               return false;                          // ...the answer to the question is false
-        }
+	global $post;										// load details about this page
+	if ( is_page() && $post->post_parent ) {	// if the page has a parent…
+		return $post->post_parent;					// …return the parent’s ID 
+	} else {												// if there’s no parent then…
+		return false;									// …return false
+	}
+	exit;
 }
+
+/**
+ * Redirects links for all top-level pages to the their first child page.
+ * @since wires 2.1
+
+function wires_page_redirect() {
+	if (is_page()) {
+		if (!is_subpage() && !is_front_page() && !is_page_template()) {		// If the page is NOT a sub-page & NOT the home page & NOT a page template…
+			global $post;
+			$children = get_pages("child_of=".$post->ID."&sort_column=menu_order");
+			if ($children) {												// …and it has children;
+				$firstchild = $children[0];							// Get the url of the first child;
+				wp_redirect(get_permalink($firstchild->ID));		// Put that url into wp_redirect();
+			}
+			exit;
+		}
+	}
+}
+add_action('template_redirect', 'wires_page_redirect'); */
 
 /**
  * Set the content width based on the theme's design and stylesheet.
