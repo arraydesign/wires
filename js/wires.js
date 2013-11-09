@@ -73,7 +73,7 @@ $j(document).ready(function(){
 
 /* Grid
 	  	
-	$j(document).bind('keydown', 'Ctrl+g', function() {
+	$j(document).jkey('control+g', function() {
 		$j('ul#grid').toggle();
 	});*/
 
